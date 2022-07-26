@@ -1,0 +1,45 @@
+/* Pour afficher le diagramme UML:  
+   Window>Show view>Other>Plantuml
+   
+   La doc: http://plantuml.com/class-diagram
+*/
+
+@startuml
+
+ class Language {
+ 
+ }
+ 
+ class GUI {
+ 	
+ }
+ 
+ class Filtre {
+ 	estDansBDD(l:String):String
+ 	stringToBDD(x':String):List(k,v)
+ 	compare(x':String,listBdd:List(k,v,x)):List(k,v)
+ }
+ 
+ class BDD {
+ 	create(val)
+ 	get(x:String):List(k,v)
+ }
+ 
+ class Analyse {
+ readLineToString(m:String):String
+ analyseFiltre(x':String):List(k,v)
+ finaleResponse(k,v):String
+ } 
+ 
+ interface MachineDialogue {
+	ask(s:String):List[String]
+	reinit:Unit
+	test(l:List[String]):List[String]
+} 
+MachineDialogue <|-- GUI
+Analyse <|-- Filtre
+Filtre <|-- BDD
+MachineDialogue <|--|> Analyse
+Analyse <|-- Language
+
+@enduml
